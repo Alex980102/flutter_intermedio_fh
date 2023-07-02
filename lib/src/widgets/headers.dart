@@ -99,3 +99,46 @@ class _HeaderTriangularPainter extends CustomPainter {
     return true;
   }
 }
+
+class HeaderPico extends StatelessWidget {
+  const HeaderPico({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: double.infinity,
+      width: double.infinity,
+      child: CustomPaint(
+        painter: _HeaderPicoPainter(),
+      ),
+    );
+  }
+}
+
+class _HeaderPicoPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint();
+
+    // Propiedades
+    paint.color = const Color(0xff615AAB);
+    paint.style = PaintingStyle
+        .fill; // .stoke -> serían solo los bordes y el .fill -> sería rellenar todo el espacio
+    paint.strokeWidth = 2;
+
+    final path = Path();
+
+    // Dibujar con el path y el lapiz
+    path.lineTo(0, size.height * 0.25);
+    path.lineTo(size.width / 2, size.height * 0.30);
+    path.lineTo(size.width, size.height * 0.25);
+    path.lineTo(size.width, 0);
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
+  }
+}
