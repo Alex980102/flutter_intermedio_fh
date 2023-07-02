@@ -39,7 +39,7 @@ class HeaderDiagonal extends StatelessWidget {
       height: double.infinity,
       width: double.infinity,
       child: CustomPaint(
-        painter: _HeaderDiagonalPainter(),
+        painter: _HeaderTriangularPainter(),
       ),
     );
   }
@@ -64,6 +64,32 @@ class _HeaderDiagonalPainter extends CustomPainter {
     path.lineTo(size.width, 0);
     path.lineTo(0, 0);
     path.lineTo(0, size.height * 0.35);
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
+  }
+}
+
+class _HeaderTriangularPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint();
+
+    // Propiedades
+    paint.color = const Color(0xff615AAB);
+    paint.style = PaintingStyle
+        .fill; // .stoke -> serían solo los bordes y el .fill -> sería rellenar todo el espacio
+    paint.strokeWidth = 2;
+
+    final path = Path();
+
+    // Dibujar con el path y el lapiz
+    path.lineTo(size.width, size.height);
+    path.lineTo(0, size.height);
 
     canvas.drawPath(path, paint);
   }
